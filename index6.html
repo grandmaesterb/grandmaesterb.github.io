@@ -15,10 +15,10 @@
 
 </head>
 <body>
-
+<body background="http://www.astoria-luzern.ch/_thumbnails_/938_1_02_coffeeshop01.jpg">
 <style>
     	body { margin:0; padding:0; }
-    	#mapid { position:absolute; top:50px; bottom:50px; left:50px; width:500px; height:500px;}
+    	#mapid { position:absolute; margin-top:5%; margin-bottom:5%; margin-left:5%; width:1000px; height:600px;}
 </style>
 
 <div id="mapid"</div>
@@ -29,16 +29,21 @@
 	L.tileLayer("http://tile.openstreetmap.org/{z}/{x}/{y}.png", {
 		attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, '
 	}).addTo(mymap);
+	
+var icon2 = L.icon({
+    iconUrl: 'http://www.clipartkid.com/images/68/full-version-of-happy-hot-tea-clipart-XjtmAE-clipart.gif',
+    iconSize: [50,50]
+});
 
 	function onEachFeature(feature, layer) {
     if (feature.properties) {
-        layer.bindPopup("<b>" + feature.properties.name + "</b> serves a tea for $" + feature.properties.tea_price_);
+	layer.setIcon(icon2);
+        layer.bindPopup("<img src = http://furtaev.ru/preview/man_with_money_bag_small.png>" + "<p>" +"<b>" + feature.properties.name + "</b> serves tea for $" + feature.properties.tea_price_ + "</p>");
 	}
 	}
 	var points = new L.geoJson(points, {
 		onEachFeature: onEachFeature
 	}).addTo(mymap);
 	</script>
-
-</body>
+ </body>
 </html>
