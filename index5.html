@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<title>Geog 483 Leaflet Tutorial</title>
+	<!-- This tutorial is based on the official Leaflet quickstart: http://leafletjs.com/examples/quick-start/ -->
+
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+	<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+
+</head>
+<body>
+
+<style>
+    	body { margin:0; padding:0; }
+    	#mapid { position:absolute; top:50px; bottom:50px; left:50px; width:500px; height:500px;}
+</style>
+
+<div id="mapid"</div>
+<script src="coffeeshop.geojson" type="text/javascript"></script>
+<script type='text/javascript'>
+	var mymap = L.map('mapid').setView([43.4722, -80.5448], 15);
+
+	L.tileLayer("http://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+		attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, '
+	}).addTo(mymap);
+
+	function onEachFeature(feature, layer) {
+    if (feature.properties) {
+        layer.bindPopup("<b>" + feature.properties.name + "</b> serves a tea for $" + feature.properties.tea_price_);
+	}
+	}
+	var points = new L.geoJson(points, {
+		onEachFeature: onEachFeature
+	}).addTo(mymap);
+	</script>
+ </body>
+</html>
