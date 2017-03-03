@@ -32,13 +32,13 @@
 
 	function onEachFeature(feature, layer) {
     if (feature.properties) {
-        layer.bindPopup("<b>" + feature.properties.Point + "</b> is located at " + feature.geometry.coordinates + "  lat/long.");
-    }
+        layer.bindPopup("<b>" + feature.properties.name + "</b> serves a tea for $" + feature.properties.tea_price_);
+	}
 	}
 	var points = new L.geoJson(points, {
 		onEachFeature: onEachFeature
 	}).addTo(mymap);
-</script>
+	</script>
 
 </body>
 </html>
